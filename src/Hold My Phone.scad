@@ -1,15 +1,15 @@
 phone_width = 68;
-phone_depth = 10;
-phone_clamp_width = 44;
+phone_depth = 9.8;
+phone_clamp_width = 30;
 
-clamp_lip = 1.5;
+clamp_lip = 2;
 spring_deflection = 5;
 
-clamp_meat = 5;
+clamp_meat = 2.5;
 
 mount_base_length = 43.5;
 mount_base_height = 1.6;
-mount_slant_length = 36;
+mount_slant_length = 35;
 mount_slant_height = 8.6;
 mount_width = 42.5;
 
@@ -31,22 +31,22 @@ module base() {
 
 module clamp() {
 	union() {
-		linear_extrude(height = mount_width) {
+		linear_extrude(height = phone_clamp_width) {
 			polygon([[0, 0], [-clamp_meat, clamp_meat], [-clamp_meat-spring_deflection, (phone_width / 2) + clamp_meat], [-clamp_meat, phone_width + clamp_meat], [0, phone_width + clamp_meat*2], [phone_depth + clamp_meat, phone_width + clamp_meat*2], [phone_depth, phone_width + clamp_meat*2], [phone_depth + clamp_meat, phone_width + clamp_meat], [phone_depth + clamp_meat, phone_width + clamp_meat - clamp_lip], [phone_depth, phone_width + clamp_meat - clamp_lip], [phone_depth, phone_width + clamp_meat], [0, phone_width + clamp_meat], [-spring_deflection, (phone_width / 2) + clamp_meat], [0, clamp_meat], [phone_depth, clamp_meat], [phone_depth, clamp_meat + clamp_lip], [phone_depth + clamp_meat, clamp_meat + clamp_lip], [mount_slant_length ,0]]);
 		}
 		translate([-0.001, clamp_meat -0.01, 0.01]) {
 			rotate([0,0,0]) {
-				roundedCorner(clamp_meat - 0.01, mount_width - 0.02);
+				roundedCorner(clamp_meat - 0.01, phone_clamp_width - 0.02);
 			}
 		}
 		translate([-0.001, phone_width + clamp_meat -0.01, 0.01]) {
 			rotate([0, 0, 270]) {
-				roundedCorner(clamp_meat - 0.01, mount_width - 0.02);
+				roundedCorner(clamp_meat - 0.01, phone_clamp_width - 0.02);
 			}
 		}
 		translate([phone_depth + 0.01, phone_width + clamp_meat + 0.01, 0.01]) {
 			rotate([0, 0, 180]) {
-				roundedCorner(clamp_meat - 0.01, mount_width - 0.02);
+				roundedCorner(clamp_meat - 0.01, phone_clamp_width - 0.02);
 			}
 		}
 	}
